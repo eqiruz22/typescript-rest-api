@@ -1,8 +1,10 @@
 import express from 'express'
 import RoleController from '../controllers/RoleController'
 import ValidationRules from '../validation/ValidationRules'
+import Authenticated from '../validation/Authentication'
 const router = express.Router()
 
+router.use(Authenticated)
 router.get('/roles',RoleController.GetRoles)
 router.get("/role/:id", ValidationRules.params,RoleController.GetRole)
 router.post('/role', ValidationRules.bodyRoles,RoleController.CreateRole)
